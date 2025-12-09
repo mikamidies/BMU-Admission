@@ -1,24 +1,37 @@
+<script setup>
+import { ref } from "vue";
+
+const handleDropdown = ref(false);
+const isMobileMenuOpen = ref(false);
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+</script>
+
 <template>
   <header>
     <nav class="navbar">
       <div class="container">
-        <div>
+        <div class="navbar-start">
           <a class="navbar-brand" href="/">
             <img src="/img/brand.svg" alt="BMU Admission Logo" />
           </a>
-          <a
+          <button
+            @click="toggleMobileMenu"
             role="button"
             class="navbar-burger"
+            :class="{ 'is-active': isMobileMenuOpen }"
             aria-label="menu"
-            aria-expanded="false"
+            :aria-expanded="isMobileMenuOpen"
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </button>
         </div>
 
-        <div class="navbar-menu">
+        <div class="navbar-menu" :class="{ 'is-active': isMobileMenuOpen }">
           <div class="navbar-end">
             <button class="navbar-link">Home</button>
             <button class="navbar-link">About</button>
@@ -58,18 +71,13 @@
   </header>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const handleDropdown = ref(false);
-</script>
-
 <style scoped>
 header {
   background-color: #ffffff;
   border: 1px solid #ebebeb;
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 .container {
   display: flex;
@@ -174,16 +182,18 @@ header {
   color: #ffffff;
   border: none;
   border-radius: 16px;
-  padding: 18px 48px;
+  padding: 20px 48px;
   font-size: 18px;
   cursor: pointer;
   font-weight: 500;
   position: relative;
+  white-space: nowrap;
   overflow: hidden;
 }
 .navbar-button .apply-button p {
   position: relative;
   z-index: 2;
+  transform: translateY(2px);
 }
 .navbar-button .apply-button .gif {
   width: 100%;
@@ -195,5 +205,137 @@ header {
   z-index: 1;
   opacity: 0.5;
   pointer-events: none;
+}
+
+/* Burger Menu Styles */
+.navbar-start {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 20;
+}
+
+.navbar-burger span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--blue);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.navbar-burger.is-active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.navbar-burger.is-active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.navbar-burger.is-active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 24px 0;
+  }
+  .navbar-burger {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    flex-direction: column;
+    gap: 0;
+    padding: 24px 0;
+    border-top: 1px solid #ebebeb;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+  }
+
+  .navbar-menu.is-active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-end {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .navbar-link {
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .navbar-link::after {
+    display: none;
+  }
+
+  .navbar-languages {
+    width: 100%;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .navbar-dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    margin-top: 12px;
+    transform: none;
+  }
+
+  .navbar-dropdown.show {
+    transform: none;
+  }
+
+  .navbar-button {
+    padding: 16px 24px;
+    width: 100%;
+  }
+
+  .navbar-button .apply-button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-brand img {
+    width: 150px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
 }
 </style>
