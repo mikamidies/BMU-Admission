@@ -109,7 +109,7 @@ header {
   font-size: 18px;
   line-height: 24px;
   position: relative;
-  padding: 32px 24px;
+  padding: 40px 24px;
   font-weight: 500;
 }
 .navbar-link::after {
