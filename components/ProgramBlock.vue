@@ -4,8 +4,8 @@
   <section class="program-section">
     <div class="container">
       <div class="program-left">
-        <img src="/img/photo-1.jpg" alt="" class="porogram-img_1" />
-        <img src="/img/photo-2.jpg" alt="" class="porogram-img_2" />
+        <img src="/img/photo-2.jpg" alt="" class="porogram-img_1" />
+        <img src="/img/photo-1.jpg" alt="" class="porogram-img_2" />
 
         <div class="logo">
           <img src="/img/qm.png" alt="" />
