@@ -1,4 +1,117 @@
-<script setup></script>
+<script setup>
+const { $gsap, $ScrollTrigger } = useNuxtApp();
+
+onMounted(() => {
+  $gsap.to(".porogram-img_1", {
+    scrollTrigger: {
+      trigger: ".program-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+    y: -100,
+    scale: 1.1,
+    ease: "none",
+  });
+
+  $gsap.to(".porogram-img_2", {
+    scrollTrigger: {
+      trigger: ".program-section",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+    y: -10,
+    scale: 0.95,
+    ease: "none",
+  });
+
+  $gsap.fromTo(
+    ".logo",
+    {
+      y: 100,
+      opacity: 0,
+    },
+    {
+      scrollTrigger: {
+        trigger: ".program-section",
+        start: "top 80%",
+        end: "top 50%",
+        scrub: false,
+        toggleActions: "restart none restart none",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1.5,
+      ease: "bounce.out",
+    }
+  );
+
+  const tl = $gsap.timeline({
+    scrollTrigger: {
+      trigger: ".program-right",
+      start: "top 90%",
+      toggleActions: "restart none restart none",
+    },
+  });
+
+  tl.fromTo(
+    ".program-item",
+    {
+      x: -50,
+      opacity: 0,
+      scale: 0.8,
+    },
+    {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "back.out(1.7)",
+    }
+  );
+
+  $gsap.fromTo(
+    ".program-paragraph",
+    {
+      y: 50,
+      opacity: 0,
+    },
+    {
+      scrollTrigger: {
+        trigger: ".program-right",
+        start: "top 90%",
+        toggleActions: "restart none restart none",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+    }
+  );
+
+  $gsap.fromTo(
+    ".program-desc",
+    {
+      y: 30,
+      opacity: 0,
+    },
+    {
+      scrollTrigger: {
+        trigger: ".program-right",
+        start: "top 80%",
+        toggleActions: "restart none restart none",
+      },
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      delay: 0.3,
+      ease: "power2.out",
+    }
+  );
+});
+</script>
 
 <template>
   <section class="program-section">
@@ -27,25 +140,25 @@
           international universities.
         </p>
         <div class="program-items">
-          <div class="program-item">
+          <div class="program-item item-1">
             <div class="program-logo">
               <Icon name="lucide:building-2" size="32" />
             </div>
             <p>Recognised with University of Reading</p>
           </div>
-          <div class="program-item">
+          <div class="program-item item-2">
             <div class="program-logo">
               <Icon name="lucide:speech" size="32" />
             </div>
             <p>Fully taught in English</p>
           </div>
-          <div class="program-item">
+          <div class="program-item item-3">
             <div class="program-logo">
               <Icon name="lucide:earth" size="32" />
             </div>
             <p>International progression options</p>
           </div>
-          <div class="program-item">
+          <div class="program-item item-4">
             <div class="program-logo">
               <Icon name="lucide:graduation-cap" size="32" />
             </div>

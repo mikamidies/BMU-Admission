@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+const { $gsap, $ScrollTrigger } = useNuxtApp();
 
 const words = ["manager", "leader", "director", "CEO", "expert"];
 const currentWordIndex = ref(0);
@@ -33,7 +34,7 @@ const typeWriter = () => {
       typingTimeout = setTimeout(typeWriter, speed);
     } else {
       isDeleting.value = false;
-      currentWordIndex.value = (currentWordIndex.value + 1) % words.length;
+      currentWordIndex.value = (currentWordIndex + 1) % words.length;
       typingTimeout = setTimeout(typeWriter, 500);
     }
   }
@@ -41,6 +42,146 @@ const typeWriter = () => {
 
 onMounted(() => {
   typeWriter();
+
+  const path = document.querySelector(".urok__header-background-line path");
+  if (path) {
+    const length = path.getTotalLength();
+    $gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+    $gsap.to(path, {
+      strokeDashoffset: 0,
+      duration: 3,
+      ease: "power2.out",
+    });
+  }
+
+  $gsap.to(".hero-right .icon", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+    y: -100,
+    rotate: 5,
+    ease: "none",
+  });
+
+  $gsap.to(".hero-right .img", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 1,
+    },
+    y: 50,
+    scale: 1.05,
+    ease: "none",
+  });
+
+  $gsap.to(".star-1", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: 360,
+    duration: 2,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-2", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top 70%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: -360,
+    duration: 2.5,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-3", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top 60%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: 180,
+    duration: 3,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-4", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top 50%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: -180,
+    duration: 2.5,
+    ease: "power2.out",
+  });
+
+  $gsap.fromTo(
+    ".hero-title",
+    {
+      y: 50,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+    }
+  );
+
+  $gsap.fromTo(
+    ".hero-subtitle",
+    {
+      y: 30,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      delay: 0.3,
+      ease: "power2.out",
+    }
+  );
+
+  $gsap.fromTo(
+    ".hero-infos",
+    {
+      y: 20,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      delay: 0.6,
+      ease: "power2.out",
+    }
+  );
+
+  $gsap.fromTo(
+    ".hero-buttons",
+    {
+      y: 20,
+      opacity: 0,
+      scale: 0.9,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      delay: 0.9,
+      ease: "back.out(1.7)",
+    }
+  );
 });
 
 onUnmounted(() => {
@@ -52,7 +193,36 @@ onUnmounted(() => {
 
 <template>
   <section class="hero">
-    <img src="/img/bacteria.svg" alt="" class="bacteria" />
+    <div class="bacteria">
+      <svg
+        class="urok__header-background-line"
+        viewBox="0 0 1920 634"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 497.217C178.56 610.975 570.785 723.278 822.26 505.109C824.019 503.582 822.272 500.614 820.155 501.587C727.448 544.228 472.479 624.119 739.232 471.23C1194.72 210.169 1673 1195 1919.5 4"
+          stroke="url(#paint0_linear_7018_2839)"
+          stroke-width="8"
+          stroke-miterlimit="3.8637"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+        <defs>
+          <linearGradient
+            id="paint0_linear_7018_2839"
+            x1="1080.58"
+            y1="14.6965"
+            x2="-176.146"
+            y2="487.51"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#0086FF"></stop>
+            <stop offset="1" stop-color="#1E1D22"></stop>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
     <div class="container">
       <div class="hero-left">
         <h1 class="hero-title">
@@ -185,7 +355,6 @@ onUnmounted(() => {
 .learn-button p {
   position: relative;
   z-index: 2;
-  transform: translateY(2px);
 }
 .apply-button .gif {
   width: 100%;

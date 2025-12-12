@@ -175,6 +175,7 @@ const slides = {
   grid-template-columns: 6fr 4fr;
   gap: 24px;
   min-width: 0;
+  display: none;
 }
 .adv-row {
   display: flex;

@@ -6,6 +6,7 @@
   <main>
     <HeroBlock />
     <ProgramBlock />
+
     <AdvantagesBlock />
   </main>
 </template>

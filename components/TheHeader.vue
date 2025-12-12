@@ -193,7 +193,6 @@ header {
 .navbar-button .apply-button p {
   position: relative;
   z-index: 2;
-  transform: translateY(2px);
 }
 .navbar-button .apply-button .gif {
   width: 100%;
