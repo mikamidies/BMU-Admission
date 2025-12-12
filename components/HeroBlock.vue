@@ -5,43 +5,53 @@ const { $gsap, $ScrollTrigger } = useNuxtApp();
 const words = ["manager", "leader", "director", "CEO", "expert"];
 const currentWordIndex = ref(0);
 const displayedText = ref("");
-const isDeleting = ref(false);
-let typingTimeout = null;
+let tl;
 
-const typeWriter = () => {
+const animateWord = () => {
   const currentWord = words[currentWordIndex.value];
-  const speed = isDeleting.value ? 50 : 100;
+  tl = $gsap.timeline();
 
-  if (!isDeleting.value) {
-    if (displayedText.value.length < currentWord.length) {
-      displayedText.value = currentWord.substring(
-        0,
-        displayedText.value.length + 1
-      );
-      typingTimeout = setTimeout(typeWriter, speed);
-    } else {
-      typingTimeout = setTimeout(() => {
-        isDeleting.value = true;
-        typeWriter();
-      }, 2000);
+  tl.to(
+    {},
+    {
+      duration: currentWord.length * 0.1,
+      onUpdate: function () {
+        const progress = this.progress();
+        const charIndex = Math.floor(progress * currentWord.length);
+        displayedText.value = currentWord.substring(0, charIndex + 1);
+      },
+      ease: "none",
     }
-  } else {
-    if (displayedText.value.length > 0) {
-      displayedText.value = currentWord.substring(
-        0,
-        displayedText.value.length - 1
-      );
-      typingTimeout = setTimeout(typeWriter, speed);
-    } else {
-      isDeleting.value = false;
-      currentWordIndex.value = (currentWordIndex + 1) % words.length;
-      typingTimeout = setTimeout(typeWriter, 500);
+  );
+
+  tl.to({}, { duration: 2 });
+
+  tl.to(
+    {},
+    {
+      duration: currentWord.length * 0.05,
+      onUpdate: function () {
+        const progress = 1 - this.progress();
+        const charIndex = Math.floor(progress * currentWord.length);
+        displayedText.value = currentWord.substring(0, charIndex);
+      },
+      ease: "none",
+      onComplete: () => {
+        currentWordIndex.value = (currentWordIndex.value + 1) % words.length;
+        animateWord();
+      },
     }
-  }
+  );
+
+  tl.to({}, { duration: 0.5 });
+};
+
+const startTypewriter = () => {
+  animateWord();
 };
 
 onMounted(() => {
-  typeWriter();
+  startTypewriter();
 
   const path = document.querySelector(".urok__header-background-line path");
   if (path) {
@@ -185,8 +195,8 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  if (typingTimeout) {
-    clearTimeout(typingTimeout);
+  if (tl) {
+    tl.kill();
   }
 });
 </script>
@@ -384,7 +394,6 @@ onUnmounted(() => {
   position: absolute;
   top: 0;
   left: 50%;
-  /* transform: translateX(-20%); */
   background: rgba(255, 255, 255, 0.15);
   border-radius: 24px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -489,6 +498,7 @@ onUnmounted(() => {
   display: inline-block;
   min-width: 220px;
   text-align: left;
+  text-transform: capitalize;
 }
 .hero-title .typing-text::after {
   content: "|";
