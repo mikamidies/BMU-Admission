@@ -6,7 +6,7 @@
   <main>
     <HeroBlock />
     <ProgramBlock />
-
+    <DirectionsBlock />
     <AdvantagesBlock />
   </main>
 </template>
