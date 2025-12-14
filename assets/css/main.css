@@ -192,3 +192,9 @@ body {
     padding: 0 12px;
   }
 }
+.section-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--blue);
+}

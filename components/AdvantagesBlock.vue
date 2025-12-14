@@ -29,18 +29,52 @@ onMounted(() => {
   }, 5000);
 
   $gsap.fromTo(
-    ".adv-button",
+    ".adv-title",
+    { opacity: 0, y: 50, scale: 0.9 },
     {
-      y: 50,
-      opacity: 0,
-    },
-    {
-      y: 0,
       opacity: 1,
-      duration: 0.2,
+      y: 0,
+      scale: 1,
+      duration: 1.2,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: ".adv-title",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.fromTo(
+    ".adv-button",
+    { opacity: 0, y: 50, scale: 0.8 },
+    {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotation: 0,
+      duration: 0.1,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: ".adv-left",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.fromTo(
+    ".adv-right",
+    { opacity: 0, x: 100, scale: 0.9 },
+    {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      duration: 1.2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: ".advantages-block",
+        trigger: ".adv-right",
         start: "top 80%",
         toggleActions: "play none none reverse",
       },
@@ -54,7 +88,8 @@ onMounted(() => {
       toggleActions: "play none none reverse",
     },
     rotation: 360,
-    duration: 0.5,
+    scale: 1.2,
+    duration: 1,
     ease: "power2.out",
   });
 
@@ -65,7 +100,9 @@ onMounted(() => {
       toggleActions: "play none none reverse",
     },
     rotation: -360,
-    duration: 1,
+    x: 20,
+    y: -10,
+    duration: 1.5,
     ease: "power2.out",
   });
 
@@ -76,8 +113,10 @@ onMounted(() => {
       toggleActions: "play none none reverse",
     },
     rotation: 180,
-    duration: 1.5,
-    ease: "power2.out",
+    scale: 1.3,
+    y: 15,
+    duration: 2,
+    ease: "bounce.out",
   });
 
   $gsap.to(".star-4", {
@@ -87,8 +126,10 @@ onMounted(() => {
       toggleActions: "play none none reverse",
     },
     rotation: -180,
-    duration: 2,
-    ease: "power2.out",
+    x: -15,
+    scale: 1.1,
+    duration: 2.5,
+    ease: "elastic.out(1, 0.3)",
   });
 });
 

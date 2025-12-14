@@ -390,6 +390,13 @@ onUnmounted(() => {
   align-items: center;
   padding: 24px;
 }
+.right-item:nth-child(even) {
+  background: #6096ba;
+}
+.right-item:nth-child(even) .right-txt,
+.right-item:nth-child(even) .right-name {
+  color: #fff;
+}
 .right-content {
   display: grid;
   grid-template-columns: 1fr 300px;
