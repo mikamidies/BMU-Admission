@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, onUnmounted } from "vue";
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 
 onMounted(() => {
@@ -110,6 +111,10 @@ onMounted(() => {
       ease: "power2.out",
     }
   );
+});
+
+onUnmounted(() => {
+  $ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 });
 </script>
 

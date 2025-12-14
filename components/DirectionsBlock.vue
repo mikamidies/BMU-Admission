@@ -4,6 +4,65 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+
+const { $gsap, $ScrollTrigger } = useNuxtApp();
+
+onMounted(() => {
+  $gsap.fromTo(
+    ".dir-title",
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".dir-title",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.fromTo(
+    ".dir-item.big__item",
+    { opacity: 0, x: -100 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".dir-item.big__item",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.fromTo(
+    ".right-side",
+    { opacity: 0, x: 100 },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".directions-block",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+});
+
+onUnmounted(() => {
+  $ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+});
 </script>
 
 <template>
@@ -49,7 +108,190 @@ import "swiper/css/effect-fade";
             </div>
           </div>
         </div>
-        <div class="right__swiper"></div>
+        <div class="right-side">
+          <Swiper
+            :modules="[Autoplay]"
+            :autoplay="{ delay: 5000 }"
+            :speed="1000"
+            :loop="true"
+            :direction="'vertical'"
+            :space-between="24"
+          >
+            <SwiperSlide>
+              <div class="right-item">
+                <h4 class="right-name">BSc in Accounting and Finance</h4>
+
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BSc (Hons) in Accounting and Finance at BMU, validated by
+                      QMU: ACCA-aligned, preparing graduates for global careers
+                      in accounting and finance
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-1.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="right-item">
+                <h4 class="right-name">
+                  BSc in Management Information Systems
+                </h4>
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BSc (Hons) in Management Information Systems at BMU,
+                      validated by QMU: blending business and IT skills for
+                      dynamic careers
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-2.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div class="right-item">
+                <h4 class="right-name">BSc in Banking and Finance</h4>
+
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BSc (Hons) in Banking and Finance at BMU, validated by
+                      QMU: CFA-aligned, preparing graduates for global careers
+                      in banking and finance
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-3.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="right-item">
+                <h4 class="right-name">BBA with Project Management</h4>
+
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BBA with PM: international degree combining business
+                      fundamentals and project management skills for careers
+                      across private and public sectors
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-4.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div class="right-item">
+                <h4 class="right-name">
+                  BBA with Digital Marketing and e-Business
+                </h4>
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BBA Digital Marketing & E-Business: international degree
+                      combining business fundamentals with digital and
+                      e-business skills for careers
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-5.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="right-item">
+                <h4 class="right-name">
+                  BBA with Logistics and Supply Chain Management
+                </h4>
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BBA Logistics & Supply Chain: international degree merging
+                      business fundamentals with logistics and supply chain
+                      expertise for careers
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-6.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div class="right-item">
+                <h4 class="right-name">
+                  BBA with Economics and Sustainable Development
+                </h4>
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BBA Economics & Sustainable Development: international
+                      degree combining business fundamentals with economics and
+                      sustainability expertise for dynamic careers
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-7.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+              <div class="right-item">
+                <h4 class="right-name">
+                  BBA with Communication and Public Relations
+                </h4>
+                <div class="right-content">
+                  <div class="flexer">
+                    <p class="right-txt">
+                      BBA Communication & Public Relations: international degree
+                      combining business fundamentals with communication and PR
+                      expertise for dynamic careers
+                    </p>
+                    <p class="bachelors">
+                      <img src="/img/star.svg" alt="" />
+                      Bachelor’s Degree
+                    </p>
+                  </div>
+                  <div class="right-icon">
+                    <img src="/img/dir-8.webp" alt="" />
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
       </div>
     </div>
   </div>
@@ -129,67 +371,130 @@ import "swiper/css/effect-fade";
   height: 4px;
   background-color: var(--blue);
 }
-.right__swiper {
+.right-side {
   min-width: 0;
-  height: auto;
 }
-.right__swiper .swiper {
-  border-radius: 12px;
+.swiper {
+  height: 572px;
+  border-radius: 16px;
 }
-.blue-name {
-  color: var(--blue) !important;
-  font-weight: 700 !important;
-  font-size: 28px !important;
-  margin-bottom: 22px !important;
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-:deep(.swiper-slide) {
+.right-item {
+  height: 100%;
+  background: white;
+  border-radius: 16px;
+  align-items: center;
+  padding: 24px;
+}
+.right-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 300px;
+  gap: 24px;
+  height: calc(100% - 48px);
 }
-.right__swiper .dir-item {
-  position: relative;
-  overflow: hidden;
+.right-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 24px;
 }
-.right__swiper .dir-item::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
+.right-txt {
+  font-size: 16px;
+  line-height: 24px;
+  color: #555;
+}
+.right-icon {
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-.dir-img {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: 178px;
   border-radius: 12px;
+  overflow: hidden;
 }
-.dir-img img {
+.right-icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.right__swiper .dir-content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  z-index: 2;
+.flexer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.right__swiper .swiper-slide .dir-name {
-  font-size: 18px !important;
-  line-height: 24px;
-  margin-bottom: 0px !important;
-  color: #fff;
+.bachelors {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--blue);
+  margin-top: 16px;
 }
-.right__swiper .dir-text {
-  font-size: 14px;
-  line-height: 18px;
-  color: #fff;
-  margin: 0;
-  display: none;
+@media (max-width: 768px) {
+  .directions-block {
+    padding: 40px 0;
+  }
+  .dir-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  .dir-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .dir-item.big__item {
+    padding: 24px;
+  }
+  .dir-name {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .dir-text {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 24px;
+  }
+  .item-list {
+    padding: 20px;
+  }
+  .list-name {
+    font-size: 18px;
+  }
+  .list-desc {
+    font-size: 13px;
+    line-height: 18px;
+    padding-left: 40px;
+  }
+  .list-desc::after {
+    width: 28px;
+    height: 3px;
+  }
+  .right-side {
+    order: -1; /* Переместить наверх на мобильных */
+  }
+  .swiper {
+    height: 400px;
+  }
+  .right-item {
+    padding: 20px;
+  }
+  .right-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    height: auto;
+  }
+  .right-name {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .right-txt {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .right-icon {
+    height: 150px;
+  }
 }
 </style>

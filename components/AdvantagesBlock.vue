@@ -96,6 +96,7 @@ onUnmounted(() => {
   if (intervalId.value) {
     clearInterval(intervalId.value);
   }
+  $ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 });
 </script>
 

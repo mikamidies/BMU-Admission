@@ -198,6 +198,7 @@ onUnmounted(() => {
   if (tl) {
     tl.kill();
   }
+  $ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 });
 </script>
 

@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "British Management University",
+      title: "Apply to British Management University",
       htmlAttrs: {
         lang: "en",
       },
