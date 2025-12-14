@@ -1,3 +1,11 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { EffectFade, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+</script>
+
 <template>
   <div class="directions-block">
     <div class="container">
@@ -41,14 +49,11 @@
             </div>
           </div>
         </div>
-        <div class="dir-item"></div>
-        <div class="dir-item"></div>
+        <div class="right__swiper"></div>
       </div>
     </div>
   </div>
 </template>
-
-<script setup></script>
 
 <style scoped>
 .directions-block {
@@ -63,7 +68,7 @@
 }
 .dir-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
 .dir-item.big__item {
@@ -73,7 +78,6 @@
   -webkit-box-shadow: 0px 0px 54px -25px var(--blue);
   -moz-box-shadow: 0px 0px 54px -25px var(--blue);
   box-shadow: 0px 0px 54px -25px var(--blue);
-  grid-column: 1/3;
 }
 .dir-item {
   background-color: #e0e0e0;
@@ -124,5 +128,68 @@
   width: 32px;
   height: 4px;
   background-color: var(--blue);
+}
+.right__swiper {
+  min-width: 0;
+  height: auto;
+}
+.right__swiper .swiper {
+  border-radius: 12px;
+}
+.blue-name {
+  color: var(--blue) !important;
+  font-weight: 700 !important;
+  font-size: 28px !important;
+  margin-bottom: 22px !important;
+}
+:deep(.swiper-slide) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.right__swiper .dir-item {
+  position: relative;
+  overflow: hidden;
+}
+.right__swiper .dir-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+.dir-img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.dir-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.right__swiper .dir-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 2;
+}
+.right__swiper .swiper-slide .dir-name {
+  font-size: 18px !important;
+  line-height: 24px;
+  margin-bottom: 0px !important;
+  color: #fff;
+}
+.right__swiper .dir-text {
+  font-size: 14px;
+  line-height: 18px;
+  color: #fff;
+  margin: 0;
+  display: none;
 }
 </style>

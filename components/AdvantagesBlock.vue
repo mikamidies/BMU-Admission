@@ -114,7 +114,6 @@ onUnmounted(() => {
             <div
               class="adv-button first-button"
               :class="{ active: activeSwiper === 'first' }"
-              @mouseenter="activeSwiper = 'first'"
             >
               <div class="button-top">
                 <p class="button-name">Double Degree</p>
@@ -132,7 +131,6 @@ onUnmounted(() => {
             <div
               class="adv-button second-button"
               :class="{ active: activeSwiper === 'second' }"
-              @mouseenter="activeSwiper = 'second'"
             >
               <div class="button-top">
                 <p class="button-name">Modern Campus</p>
@@ -153,7 +151,6 @@ onUnmounted(() => {
             <div
               class="adv-button third-button"
               :class="{ active: activeSwiper === 'third' }"
-              @mouseenter="activeSwiper = 'third'"
             >
               <div class="button-top">
                 <p class="button-name">International Faculty</p>
@@ -172,7 +169,6 @@ onUnmounted(() => {
             <div
               class="adv-button fourth-button"
               :class="{ active: activeSwiper === 'fourth' }"
-              @mouseenter="activeSwiper = 'fourth'"
             >
               <div class="button-top">
                 <p class="button-name">Student Life</p>
@@ -193,7 +189,6 @@ onUnmounted(() => {
             <div
               class="adv-button fifth-button"
               :class="{ active: activeSwiper === 'fifth' }"
-              @mouseenter="activeSwiper = 'fifth'"
             >
               <div class="button-top">
                 <p class="button-name">Sports and Wellness</p>
@@ -212,7 +207,6 @@ onUnmounted(() => {
             <div
               class="adv-button sixth-button"
               :class="{ active: activeSwiper === 'sixth' }"
-              @mouseenter="activeSwiper = 'sixth'"
             >
               <div class="button-top">
                 <p class="button-name">Career Support</p>
@@ -282,7 +276,6 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  cursor: pointer;
   transition: transform 0.2s;
   position: relative;
   overflow: hidden;
