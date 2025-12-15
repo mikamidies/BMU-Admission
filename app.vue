@@ -11,6 +11,7 @@
     <AdvantagesBlock />
     <ApplyBlock />
     <FaqBlock />
+    <FormBlock />
   </main>
 
   <TheFooter />
