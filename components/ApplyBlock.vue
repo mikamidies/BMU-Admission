@@ -2,19 +2,18 @@
 import { ref, computed, onMounted } from "vue";
 const { $gsap, $ScrollTrigger } = useNuxtApp();
 
-const selectedLevel = ref("ielts5"); // 'ielts5' or 'ielts6'
+const selectedLevel = ref("ielts5");
 const fullPayment = ref(false);
 
 const price = computed(() => {
   let base = selectedLevel.value === "ielts6" ? 32000000 : 40000000;
   if (fullPayment.value) {
-    base *= 0.95; // 5% discount
+    base *= 0.95;
   }
   return base.toLocaleString() + " UZS";
 });
 
 onMounted(() => {
-  // Анимации для левой части
   $gsap.fromTo(
     ".left-title",
     {
@@ -54,7 +53,6 @@ onMounted(() => {
     }
   );
 
-  // Анимации для counter
   $gsap.fromTo(
     ".counter",
     {
@@ -174,15 +172,43 @@ onMounted(() => {
         </div>
       </div>
       <div class="right">
-        <h4 class="left-title section-title">Pricing & Financial Aid</h4>
+        <h4 class="left-title section-title">
+          Admissions Process & Requirements
+        </h4>
         <p class="left-desc">
-          We are committed to making education accessible and affordable for all
-          students. <br />
-          Our tuition fees are competitive, and we offer a range of financial
-          aid options
+          A clear and straightforward admission process designed to help
+          students smoothly enter the BMU Foundation Programme and prepare for
+          undergraduate studies.
         </p>
 
-        <div class="apply-text"></div>
+        <div class="apply-text">
+          <div class="item">
+            <h4>Step 1. Check Eligibility</h4>
+            <ul>
+              <li>
+                Secondary school / academic lyceum / vocational college diploma
+              </li>
+              <li>Academic transcript (if available)</li>
+              <li>English language certificate (if available)</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h4>Step 2. Meet English Language Requirements</h4>
+            <div>
+              <ul>
+                <li>IELTS score of 5.5 or higher</li>
+                <li>
+                  Completion of an English language course at a recognized
+                  institution
+                </li>
+                <li>
+                  Other equivalent qualifications as assessed by the admissions
+                  team
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -214,6 +240,16 @@ onMounted(() => {
   line-height: 20px;
   color: #f0f0f0;
   margin-bottom: 16px;
+}
+.right {
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--blue);
+}
+.apply-text {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
 }
 .counter {
   background: white;
@@ -255,6 +291,27 @@ onMounted(() => {
 .price span {
   color: var(--blue);
   font-size: 28px;
+}
+.right .left-title {
+  color: #ffffff;
+}
+.right .left-desc {
+  color: #f0f0f0;
+  margin-bottom: 24px;
+}
+.right .item h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.right .item ul {
+  padding-left: 20px;
+}
+.right .item ul li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333333;
+  list-style: disc;
 }
 
 /* Responsive */

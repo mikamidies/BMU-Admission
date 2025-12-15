@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <img src="/img/star.svg" alt="" class="star-1" />
+    <img src="/img/star.svg" alt="" class="star-2" />
+    <img src="/img/star.svg" alt="" class="star-3" />
+    <img src="/img/star.svg" alt="" class="star-4" />
     <div class="container">
       <div class="top section__top">
         <h2 class="title">Contact Us!</h2>
@@ -45,6 +49,10 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
+const { $gsap, $ScrollTrigger } = useNuxtApp();
+
 const form = ref({
   name: "",
   email: "",
@@ -56,11 +64,97 @@ const form = ref({
 const handleSubmit = () => {
   console.log("Form submitted:", form.value);
 };
+
+onMounted(() => {
+  $gsap.fromTo(
+    ".title",
+    {
+      y: 50,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.fromTo(
+    "form",
+    {
+      y: 30,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      delay: 0.3,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    }
+  );
+
+  $gsap.to(".star-1", {
+    scrollTrigger: {
+      trigger: ".wrapper",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: 360,
+    duration: 2,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-2", {
+    scrollTrigger: {
+      trigger: ".wrapper",
+      start: "top 70%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: -360,
+    duration: 2.5,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-3", {
+    scrollTrigger: {
+      trigger: ".wrapper",
+      start: "top 60%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: 180,
+    duration: 3,
+    ease: "power2.out",
+  });
+
+  $gsap.to(".star-4", {
+    scrollTrigger: {
+      trigger: ".wrapper",
+      start: "top 50%",
+      toggleActions: "play none none reverse",
+    },
+    rotation: -180,
+    duration: 2.5,
+    ease: "power2.out",
+  });
+});
 </script>
 
 <style scoped>
 .wrapper {
   padding: 60px 0 120px 0;
+  position: relative;
 }
 
 .container {
@@ -152,6 +246,44 @@ textarea.message {
   transform: translateY(0);
 }
 
+/* Star styles */
+.star-1 {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  width: 32px;
+  height: 32px;
+  z-index: 0;
+  transform: rotate(-10deg);
+}
+.star-2 {
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  width: 24px;
+  height: 24px;
+  z-index: 0;
+  transform: rotate(-10deg);
+}
+.star-3 {
+  position: absolute;
+  top: 60%;
+  left: 15%;
+  width: 40px;
+  height: 40px;
+  z-index: 0;
+  transform: rotate(10deg);
+}
+.star-4 {
+  position: absolute;
+  bottom: 20%;
+  right: 15%;
+  width: 24px;
+  height: 24px;
+  z-index: 0;
+  transform: rotate(10deg);
+}
+
 @media (max-width: 1024px) {
   .wrapper {
     padding: 40px 0 80px 0;
@@ -185,6 +317,13 @@ textarea.message {
     line-height: 24px;
     border-radius: 20px;
   }
+  .star-1,
+  .star-2,
+  .star-3,
+  .star-4 {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -205,6 +344,12 @@ textarea.message {
   textarea {
     padding: 16px 20px;
     font-size: 15px;
+  }
+  .star-1,
+  .star-2,
+  .star-3,
+  .star-4 {
+    display: none;
   }
 }
 </style>
