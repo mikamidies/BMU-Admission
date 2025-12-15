@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="container">
       <div class="top section__top">
-        <h2 class="title section__title">Contact Us!</h2>
+        <h2 class="title">Contact Us!</h2>
       </div>
 
       <form @submit.prevent="handleSubmit">

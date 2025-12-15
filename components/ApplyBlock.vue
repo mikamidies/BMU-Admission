@@ -173,6 +173,17 @@ onMounted(() => {
           </h4>
         </div>
       </div>
+      <div class="right">
+        <h4 class="left-title section-title">Pricing & Financial Aid</h4>
+        <p class="left-desc">
+          We are committed to making education accessible and affordable for all
+          students. <br />
+          Our tuition fees are competitive, and we offer a range of financial
+          aid options
+        </p>
+
+        <div class="apply-text"></div>
+      </div>
     </div>
   </div>
 </template>
