@@ -178,6 +178,7 @@ onUnmounted(() => {
 <style scoped>
 .program-section {
   padding: 120px 0 160px 0;
+  overflow: hidden;
 }
 .container {
   display: grid;

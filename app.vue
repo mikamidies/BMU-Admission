@@ -9,6 +9,7 @@
     <DirectionsBlock />
     <FacultyBlock />
     <AdvantagesBlock />
+    <FaqBlock />
   </main>
 </template>
 

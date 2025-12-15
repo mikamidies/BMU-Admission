@@ -293,6 +293,7 @@ onUnmounted(() => {
   background-color: #f9f9f9;
   transition: 0.3s;
   position: relative;
+  overflow: hidden;
 }
 .adv-title {
   font-size: 36px;

@@ -301,6 +301,7 @@ onUnmounted(() => {
 .directions-block {
   padding: 60px 0;
   background-color: #f9f9f9;
+  overflow: hidden;
 }
 .dir-title {
   font-size: 36px;
@@ -391,7 +392,7 @@ onUnmounted(() => {
   padding: 24px;
 }
 .right-item:nth-child(even) {
-  background: #6096ba;
+  background: #0086ff;
 }
 .right-item:nth-child(even) .right-txt,
 .right-item:nth-child(even) .right-name {
@@ -439,6 +440,12 @@ onUnmounted(() => {
   color: var(--blue);
   margin-top: 16px;
 }
+.right-item:nth-child(even) .bachelors {
+  color: #ffffff;
+}
+.right-item:nth-child(even) .bachelors img {
+  mix-blend-mode: plus-lighter;
+}
 @media (max-width: 768px) {
   .directions-block {
     padding: 40px 0;
@@ -479,7 +486,7 @@ onUnmounted(() => {
     height: 3px;
   }
   .right-side {
-    order: -1; /* Переместить наверх на мобильных */
+    order: -1;
   }
   .swiper {
     height: 400px;
