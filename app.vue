@@ -12,6 +12,8 @@
     <ApplyBlock />
     <FaqBlock />
   </main>
+
+  <TheFooter />
 </template>
 
 <style scoped></style>
